@@ -11,7 +11,7 @@ function computerPlay() {
 }; //return computerCoice so it can be used in the next function
  computerPlay()*/
 
-var playerSelection="Rock";
+var playerSelection="";
 //single play function. call in game input.
 
 var playRound = function(playerSelection, computerChoice){
@@ -23,13 +23,13 @@ var playRound = function(playerSelection, computerChoice){
    }else{
        switch(playerSelection){
            case "rock":
-               (computerChoice === "scissors") ? result = alert("You Win!! Rock beats Paper") : result = alert("You Lose : ( Paper beats Rock");
+               (computerChoice === "scissors") ? result = "You Win!!" : result = "You Lose";
                break;
            case "paper":
-                (computerChoice === "rock") ? result = alert("You Win!! Paper beats Rock") : result = alert("You Lose : ( Scissors beat Paper");
+                (computerChoice === "rock") ? result = "You Win!!" : result = "You Lose";
                 break;
             case "scissors":
-               (computerChoice === "paper") ? result = alert("You Win!! Scissors beat Rock") : result = alert("You Lose : ( Rock beats Scissors");
+               (computerChoice === "paper") ? result = "You Win!!"  : result = "You Lose";
                break;
        }
    }
@@ -37,3 +37,5 @@ var playRound = function(playerSelection, computerChoice){
 
 };
 playRound(playerSelection, computerChoice);
+
+
