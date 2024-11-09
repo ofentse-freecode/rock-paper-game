@@ -1,25 +1,28 @@
 //Function to randomly choose rock, paper, or scissors for the computer
-function computerPlay() {
+/*function computerPlay() {
     const choices = ['rock', 'paper', 'scissors'];
     const randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
-}
-/*var computerPlay = function(){
+}*/
+var computerPlay = function(){
     var choices = ["paper", "rock", "scissors"] ;
   return computerChoice = choices[Math.floor(Math.random() * 3)];
  
 }; //return computerCoice so it can be used in the next function
- computerPlay()*/
+ /*computerPlay();*/
 
-var playerSelection="";
+//var playerSelection="";
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection, computerChoice) {
+    
     playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
+   // computerSelection = computerSelection.toLowerCase();
 
    if(playerSelection === computerChoice){
-       alert(`Its a tie ${playerSelection} : ${computerChoice}`)
-   }else{
+       result=`Its a tie ${playerSelection} : ${computerChoice}`
+   }else if(playerSelection == null){
+    result ="Be sure to enter a play";  }
+   else{
        switch(playerSelection){
            case "rock":
                (computerChoice === "scissors") ? result = "You Win!!" : result = "You Lose";
@@ -33,6 +36,7 @@ function playRound(playerSelection, computerSelection) {
        }
    }
    return result;
+}
 
 function game() {
     let playerScore = 0;
@@ -45,18 +49,19 @@ function game() {
         
         console.log(`\nRound ${round}:`);
         
-        let playerSelection = prompt("Enter Rock, Paper, or Scissors:");
+        let playerSelection = prompt("Enter your play Rock, Paper, or Scissors:");
         let computerSelection = computerPlay();
         
-        let result = playRound(playerSelection, computerSelection);
+        let result = playRound(playerSelection, computerChoice);
 
-        if (result === "win") {
+        if (result === "You Win!!") {
             playerScore++;
-            console.log(`You Win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}`);
-        } else if (result === "lose") {
+            console.log(`You Win! ${capitalize(playerSelection)} beats ${capitalize(computerChoice)}`);
+        } else if (result === "You Lose") {
             computerScore++;
-            console.log(`You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}`);
-        } else {
+            console.log(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(playerSelection)}`);
+        } 
+        else {
             console.log(`It's a tie! Both chose ${capitalize(playerSelection)}`);
         }
         
