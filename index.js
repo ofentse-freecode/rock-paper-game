@@ -33,7 +33,7 @@ var playRound = function(playerSelection, computerChoice){
                break;
        }
    }
-   return result
+   return result;
 
 };
 playRound(playerSelection, computerChoice);
