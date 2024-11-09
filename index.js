@@ -70,9 +70,9 @@ function game() {
 
     console.log("\nGame Over!");
     if (playerScore > computerScore) {
-        console.log("Congratulations! You won the game!");
+        console.log("Congratulations!! You Won the game! Reload page to play again.");
     } else if (computerScore > playerScore) {
-        console.log("Sorry, you lost the game. Better luck next time!");
+        console.log("Sorry, you lost the game. Better luck next time! Reload page to play again.");
     } else {
         console.log("It's a draw! No one wins this time.");
     }
