@@ -1,41 +1,26 @@
-//Function to randomly choose rock, paper, or scissors for the computer
-/*function computerPlay() {
+function computerPlay() {
     const choices = ['rock', 'paper', 'scissors'];
     const randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
-}*/
-var computerPlay = function(){
-    var choices = ["paper", "rock", "scissors"] ;
-  return computerChoice = choices[Math.floor(Math.random() * 3)];
- 
-}; //return computerCoice so it can be used in the next function
- /*computerPlay();*/
+}
 
-//var playerSelection="";
+let playerSelection = prompt("Enter Rock, Paper, or Scissors:");
 
-function playRound(playerSelection, computerChoice) {
-    
-    playerSelection = playerSelection.toLowerCase();
-   // computerSelection = computerSelection.toLowerCase();
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection && playerSelection.toLowerCase();
+    computerSelection = computerSelection && computerSelection.toLowerCase();
 
-   if(playerSelection === computerChoice){
-       result=`Its a tie ${playerSelection} : ${computerChoice}`
-   }else if(playerSelection == null){
-    result ="Be sure to enter a play";  }
-   else{
-       switch(playerSelection){
-           case "rock":
-               (computerChoice === "scissors") ? result = "You Win!!" : result = "You Lose";
-               break;
-           case "paper":
-                (computerChoice === "rock") ? result = "You Win!!" : result = "You Lose";
-                break;
-            case "scissors":
-               (computerChoice === "paper") ? result = "You Win!!"  : result = "You Lose";
-               break;
-       }
-   }
-   return result;
+    if (playerSelection === computerSelection) {
+        return `Its a tie ${playerSelection} : ${computerChoice}`;
+    } else if (
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "scissors" && computerSelection === "paper") ||
+        (playerSelection === "paper" && computerSelection === "rock")
+    ) {
+        return "win";
+    } else {
+        return "lose";
+    }
 }
 
 function game() {
@@ -49,20 +34,18 @@ function game() {
         
         console.log(`\nRound ${round}:`);
         
-        let playerSelection = prompt("Enter your play Rock, Paper, or Scissors:");
         let computerSelection = computerPlay();
         
-        let result = playRound(playerSelection, computerChoice);
+        let result = playRound(playerSelection, computerSelection);
 
-        if (result === "You Win!!") {
+        if (result === "win") {
             playerScore++;
-            console.log(`You Win! ${capitalize(playerSelection)} beats ${capitalize(computerChoice)}`);
-        } else if (result === "You Lose") {
+            console.log(`You Win! ${(playerSelection)} beats ${(computerSelection)}`);
+        } else if (result === "lose") {
             computerScore++;
-            console.log(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(playerSelection)}`);
-        } 
-        else {
-            console.log(`It's a tie! Both chose ${capitalize(playerSelection)}`);
+            console.log(`You Lose! ${(computerSelection)} beats ${(playerSelection)}`);
+        } else {
+            console.log(`It's a tie! Both chose ${(playerSelection)}`);
         }
         
         console.log(`Score: You ${playerScore} - ${computerScore} Computer`);
@@ -70,17 +53,11 @@ function game() {
 
     console.log("\nGame Over!");
     if (playerScore > computerScore) {
-        console.log("Congratulations!! You Won the game! Reload page to play again.");
+        console.log("Congratulations! You won the game!");
     } else if (computerScore > playerScore) {
-        console.log("Sorry, you lost the game. Better luck next time! Reload page to play again.");
+        console.log("Sorry, you lost the game. Better luck next time!");
     } else {
         console.log("It's a draw! No one wins this time.");
     }
 }
-
-function capitalize(word) {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-}
-
 game();
-
