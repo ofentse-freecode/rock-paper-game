@@ -40,6 +40,8 @@ function playRound(playerSelection, computerSelection) {
 
 
 function game() {
+    alert("Hello guys, I’ve hacked this browser, Welcome to the game of ROCK, PAPER or SCISSORS :)");
+
     let playerScore = 0;
     let computerScore = 0;
 
