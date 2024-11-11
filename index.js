@@ -1,78 +1,74 @@
+
+
+// Function to randomly choose rock, paper, or scissors for the computer
 function computerPlay() {
     const choices = ["Rock", "Paper", "Scissors"];
-    const  Choice = choices[Math.floor(Math.random() * choices.length)];
-    return Choice;
+    const choice = choices[Math.floor(Math.random() * choices.length)];
+    return choice;
 }
 
-function getPlayerSelection() {
-
-    const Inputselection = prompt("Enter Rock, Paper, or Scissors:");
-
-     if (Inputselection === null) {
-        return "exit"; 
-    }
-    return Inputselection;
-}
-
+// Function to play a single round of Rock, Paper, Scissors
 function playRound(playerSelection, computerSelection) {
-
-    playerSelection = playerSelection?.toLowerCase();
-    computerSelection = computerSelection?.toLowerCase();
+    // Check if player selection is valid
+    if (!playerSelection || !["rock", "paper", "scissors"].includes(playerSelection.toLowerCase().trim())){
+        alert('Invalid input! Please enter rock, paper, or scissors!');
+        return "Invalid input";
+    }
+    playerSelection = playerSelection.toLowerCase();
+    computerSelection = computerSelection.toLowerCase();
 
     if (playerSelection === computerSelection) {
-        return `It's a tie! Both chose ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}`;
+        return `It's a tie! You both chose ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}`;
     } else if (
         (playerSelection === "rock" && computerSelection === "scissors") ||
         (playerSelection === "scissors" && computerSelection === "paper") ||
         (playerSelection === "paper" && computerSelection === "rock")
     ) {
-        return `You Win! ${(playerSelection)} beats ${(computerSelection)}`;
-
-    } else if(playerSelection == undefined || !["rock", "paper", "scissors"].includes(playerSelection)){
-        return 'Invalid input! Please enter rock or paper or scissors !!'// this warnig has to appear in the alert popup
-    }
-    else{
-
-        return `You Lose! ${(computerSelection)} beats ${(playerSelection)}`;
-
+        return `You Win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}`;
+    } else {
+        return `You Lose! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}`;
     }
 }
 
-
+// Function to play multiple rounds and keep score
 function game() {
-    alert("Hello guys, I’ve hacked this browser, Welcome to the game of ROCK, PAPER or SCISSORS :)");
-      //Hello Humans I have taken control of this code and the only way to defeat me is by accepting my challage to play the rock paper scissors game, the rules are simple whoever wins the game owns the code forever HAHAHAHAHA
+    alert("I, the AI, challenge you to Rock, Paper, Scissors! Win, and the code is yours. Lose, and I keep control. Let the game begin!");
     let playerScore = 0;
     let computerScore = 0;
+    const rounds = 7;
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 0; i < rounds; i++) {
+        let inputSelection = prompt(`Round ${i + 1}: Choose rock, paper, or scissors`);
 
-        const playerSelection = getPlayerSelection();
-        if (playerSelection === "exit") { 
-            console.log("Game canceled by player!");//instead of console.log(we can alert(aaah You leaving so soon!!! weakingly Human you could not comprehent my power as an AI thats why you coward in fear and decided to leave the game . HHAHAHAHAHA im so awesome))
-            return; 
+        if (inputSelection === null) { // Handle cancel input
+            alert("Leaving so soon, human? Afraid of my power? HAHAHA!");
+            return;
         }
 
         const computerSelection = computerPlay();
-        const result = playRound(playerSelection, computerSelection);
-        console.log(`Round ${i}: ${result}`);
+        const result = playRound(inputSelection, computerSelection);
+        alert(`Round ${i + 1}: ${result}`);
 
         if (result.includes("Win")) {
-            playerScore++; // if player wins congratulate them with an alert(AAAAAHHHHH !!! you have defeated me, i should have not under estimate your knowledge but know i will return HAHAHAHAHAH)
+            playerScore++;
+            alert("Don't celebrate yet, human!");
         } else if (result.includes("Lose")) {
             computerScore++;
+            alert("Yes, AI power...");
         }
+
+        alert(`Current score: You - ${playerScore} | Computer - ${computerScore}`);
     }
 
-    console.log("\nGame Over!");
+    alert("\nGame Over!");
     if (playerScore > computerScore) {
-        console.log(`Congratulations! You won the game with a score of ${playerScore} to ${computerScore}`);
+        alert(`Congratulations! You won the game with a score of ${playerScore} to ${computerScore}`);
     } else if (computerScore > playerScore) {
-        console.log(`Sorry! You lost the game. Final score: ${computerScore} to ${playerScore}`);
+        alert(`Sorry! You lost the game and the AI owns your code now. Final score: ${computerScore} to ${playerScore}`);
     } else {
-        console.log("It's a tie! Good luck next time!");
+        alert("It's a tie! Good luck next time!");
     }
 }
 
+// Call the games function to start the game
 game();
-
